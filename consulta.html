@@ -3,29 +3,144 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Consulta de Acervo</title>
+  <title>Consulta de Acervo - Biblioteca Universitária</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    body { background-color: #f3f4f6; }
-    .search-container { max-width: 600px; margin: auto; padding: 2rem; }
-    .results li { transition: all 0.3s; }
-    .results li:hover { background-color: #e5e7eb; transform: translateY(-2px); }
+    body {
+      background: linear-gradient(to bottom, #e5e7eb, #f3f4f6);
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .header {
+      background-color: #1e3a8a;
+      color: white;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo svg {
+      fill: white;
+    }
+    .search-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+    .search-input {
+      transition: all 0.3s ease;
+    }
+    .search-input:focus {
+      outline: none;
+      ring: 2px solid #3b82f6;
+    }
+    .search-button {
+      transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    .search-button:hover {
+      transform: translateY(-2px);
+    }
+    .results li {
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    .results li.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .results li:hover {
+      background-color: #dbeafe;
+      transform: translateY(-2px);
+    }
+    .status-icon {
+      display: inline-block;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      margin-right: 8px;
+    }
+    .status-available {
+      background-color: #22c55e;
+    }
+    .status-borrowed {
+      background-color: #ef4444;
+    }
+    .footer {
+      margin-top: auto;
+      background-color: #1e3a8a;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+    }
   </style>
 </head>
 <body>
-  <div class="search-container bg-white rounded-lg shadow-lg">
-    <h2 class="text-2xl font-bold text-gray-800 mb-4">Consulta de Acervo</h2>
-    <div class="flex space-x-2">
-      <input type="text" class="flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Buscar por título, autor, categoria ou ISBN">
-      <button class="bg-blue-500 text-white px-4 py-3 rounded-lg hover:bg-blue-600">Buscar</button>
+  <header class="header">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+        </svg>
+        Biblioteca Universitária
+      </div>
+      <nav>
+        <ul class="flex space-x-6">
+          <li><a href="index.html" class="text-white hover:text-blue-200">Início</a></li>
+          <li><a href="consulta.html" class="text-white hover:text-blue-200 font-bold">Consulta</a></li>
+          <li><a href="emprestimo.html" class="text-white hover:text-blue-200">Empréstimo</a></li>
+          <li><a href="devolucao.html" class="text-white hover:text-blue-200">Devolução</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="results mt-6">
-      <h3 class="text-lg font-semibold text-gray-700">Resultados:</h3>
-      <ul class="mt-2 space-y-2">
-        <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Livro: "Engenharia de Software" - Autor: Sommerville - Status: Disponível</li>
-        <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Livro: "Clean Code" - Autor: Robert Martin - Status: Emprestado</li>
+  </header>
+  <div class="search-container">
+    <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">Consulta de Acervo</h2>
+    <p class="text-gray-600 mb-6 text-center">Busque livros por título, autor, categoria ou ISBN.</p>
+    <div class="flex space-x-4 mb-6">
+      <input type="text" class="search-input flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Buscar por título, autor, categoria ou ISBN">
+      <button class="search-button bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600" onclick="showResults()">Buscar</button>
+    </div>
+    <div class="results">
+      <h3 class="text-lg font-semibold text-gray-700 mb-4">Resultados:</h3>
+      <ul class="space-y-3">
+        <li class="p-4 bg-gray-50 rounded-lg shadow-sm flex items-center">
+          <span class="status-icon status-available"></span>
+          Livro: "Engenharia de Software" - Autor: Sommerville - Status: Disponível
+        </li>
+        <li class="p-4 bg-gray-50 rounded-lg shadow-sm flex items-center">
+          <span class="status-icon status-borrowed"></span>
+          Livro: "Clean Code" - Autor: Robert Martin - Status: Emprestado
+        </li>
+        <li class="p-4 bg-gray-50 rounded-lg shadow-sm flex items-center">
+          <span class="status-icon status-available"></span>
+          Livro: "Design Patterns" - Autor: Erich Gamma - Status: Disponível
+        </li>
       </ul>
     </div>
   </div>
+  <footer class="footer">
+    <p>&copy; 2025 Sistema de Gestão de Biblioteca Universitária. Todos os direitos reservados.</p>
+  </footer>
+  <script>
+    function showResults() {
+      const results = document.querySelectorAll('.results li');
+      results.forEach((item, index) => {
+        setTimeout(() => {
+          item.classList.add('show');
+        }, index * 200);
+      });
+    }
+  </script>
 </body>
 </html>

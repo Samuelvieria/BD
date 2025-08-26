@@ -6,18 +6,78 @@
   <title>Sistema de Gestão de Biblioteca Universitária</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
   <style>
-    body { background-color: #f3f4f6; }
-    .container { max-width: 600px; margin: auto; padding: 2rem; }
+    body {
+      background: linear-gradient(to bottom, #e5e7eb, #f3f4f6);
+      font-family: 'Inter', sans-serif;
+    }
+    .header {
+      background-color: #1e3a8a;
+      color: white;
+      padding: 1.5rem;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      margin-top: 2rem;
+    }
+    .link-item {
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .link-item:hover {
+      transform: translateX(10px);
+      background-color: #dbeafe;
+    }
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo svg {
+      fill: white;
+    }
   </style>
 </head>
 <body>
-  <div class="container bg-white rounded-lg shadow-lg">
-    <h1 class="text-3xl font-bold text-gray-800 mb-4">Sistema de Gestão de Biblioteca Universitária</h1>
-    <p class="text-gray-600 mb-4">Bem-vindo aos protótipos do sistema.</p>
-    <ul class="space-y-2">
-      <li><a href="consulta.html" class="text-blue-500 hover:underline">Consulta de Acervo</a></li>
-      <li><a href="emprestimo.html" class="text-blue-500 hover:underline">Empréstimo de Livro</a></li>
-      <li><a href="devolucao.html" class="text-blue-500 hover:underline">Devolução de Livro</a></li>
+  <header class="header">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="logo">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm0-14c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm0 10c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4z"/>
+        </svg>
+        Biblioteca Universitária
+      </div>
+      <nav>
+        <ul class="flex space-x-6">
+          <li><a href="consulta.html" class="text-white hover:text-blue-200">Consulta</a></li>
+          <li><a href="emprestimo.html" class="text-white hover:text-blue-200">Empréstimo</a></li>
+          <li><a href="devolucao.html" class="text-white hover:text-blue-200">Devolução</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="container">
+    <h1 class="text-3xl font-bold text-gray-800 mb-4 text-center">Biblioteca Universitária</h1>
+    <p class="text-gray-600 mb-6 text-center">Bem-vindo aos protótipos do sistema. Explore as funcionalidades abaixo:</p>
+    <ul class="space-y-4">
+      <li class="link-item p-4 bg-gray-50 rounded-lg">
+        <a href="consulta.html" class="text-blue-600 font-semibold hover:underline">Consulta de Acervo</a>
+        <p class="text-gray-500 text-sm mt-1">Busque livros por título, autor, categoria ou ISBN.</p>
+      </li>
+      <li class="link-item p-4 bg-gray-50 rounded-lg">
+        <a href="emprestimo.html" class="text-blue-600 font-semibold hover:underline">Empréstimo de Livro</a>
+        <p class="text-gray-500 text-sm mt-1">Selecione e solicite o empréstimo de livros disponíveis.</p>
+      </li>
+      <li class="link-item p-4 bg-gray-50 rounded-lg">
+        <a href="devolucao.html" class="text-blue-600 font-semibold hover:underline">Devolução de Livro</a>
+        <p class="text-gray-500 text-sm mt-1">Registre a devolução de livros pelo bibliotecário.</p>
+      </li>
     </ul>
   </div>
 </body>
