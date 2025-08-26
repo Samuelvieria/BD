@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Devolução de Livro</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #f3f4f6; }
+    .return-container { max-width: 600px; margin: auto; padding: 2rem; }
+    .message { transition: opacity 0.3s; }
+  </style>
+</head>
+<body>
+  <div class="return-container bg-white rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Devolução de Livro</h2>
+    <div class="flex space-x-2">
+      <select class="flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option>Engenharia de Software - Sommerville</option>
+        <option>Clean Code - Robert Martin</option>
+      </select>
+      <button class="bg-red-500 text-white px-4 py-3 rounded-lg hover:bg-red-600">Confirmar Devolução</button>
+    </div>
+    <div class="message mt-4 text-green-600 font-semibold">Devolução realizada com sucesso!</div>
+  </div>
+</body>
+</html>

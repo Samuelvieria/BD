@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Consulta de Acervo</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body { background-color: #f3f4f6; }
+    .search-container { max-width: 600px; margin: auto; padding: 2rem; }
+    .results li { transition: all 0.3s; }
+    .results li:hover { background-color: #e5e7eb; transform: translateY(-2px); }
+  </style>
+</head>
+<body>
+  <div class="search-container bg-white rounded-lg shadow-lg">
+    <h2 class="text-2xl font-bold text-gray-800 mb-4">Consulta de Acervo</h2>
+    <div class="flex space-x-2">
+      <input type="text" class="flex-1 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Buscar por título, autor, categoria ou ISBN">
+      <button class="bg-blue-500 text-white px-4 py-3 rounded-lg hover:bg-blue-600">Buscar</button>
+    </div>
+    <div class="results mt-6">
+      <h3 class="text-lg font-semibold text-gray-700">Resultados:</h3>
+      <ul class="mt-2 space-y-2">
+        <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Livro: "Engenharia de Software" - Autor: Sommerville - Status: Disponível</li>
+        <li class="p-3 bg-gray-100 rounded-lg shadow-sm">Livro: "Clean Code" - Autor: Robert Martin - Status: Emprestado</li>
+      </ul>
+    </div>
+  </div>
+</body>
+</html>
